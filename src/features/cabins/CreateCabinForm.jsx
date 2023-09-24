@@ -9,16 +9,22 @@ import Button from "../../ui/Button";
 import FormRow from "../../ui/FormRow";
 import Textarea from "../../ui/Textarea";
 import FileInput from "../../ui/FileInput";
-import { createCabin } from "../../services/apiCabins";
+import { createEditCabin } from "../../services/apiCabins";
 
-function CreateCabinForm() {
-  const { register, handleSubmit, reset, formState, getValues } = useForm();
+function CreateCabinForm({ cabinToEdit }) {
+  const { id: editId, ...editValues } = cabinToEdit;
+  const isEditSession = Boolean(editId);
+
+  const { register, handleSubmit, reset, formState, getValues } = useForm({
+    defaultValues: isEditSession ? editValues : {},
+  });
+
   const { errors } = formState;
 
   const queryClient = useQueryClient();
 
   const { isLoading: isCreating, mutate } = useMutation({
-    mutationFn: createCabin,
+    mutationFn: createEditCabin,
     onSuccess: () => {
       toast.success("New cabin successfully created.");
       queryClient.invalidateQueries({ queryKey: ["cabins"] });
@@ -28,7 +34,7 @@ function CreateCabinForm() {
   });
 
   function onFormSubmit(data) {
-    mutate({ ...data, image: data.image.at(0) });
+    mutate({ ...data, image: data.image[0] });
   }
 
   return (
@@ -43,7 +49,7 @@ function CreateCabinForm() {
         />
       </FormRow>
 
-      <FormRow label="maxCapacity" error={errors?.maxCapacity?.message}>
+      <FormRow label="Maximum Capacity" error={errors?.maxCapacity?.message}>
         <Input
           type="number"
           id="maxCapacity"
@@ -57,7 +63,7 @@ function CreateCabinForm() {
         />
       </FormRow>
 
-      <FormRow label="regularPrice" error={errors?.regularPrice?.message}>
+      <FormRow label="Regular price" error={errors?.regularPrice?.message}>
         <Input
           type="number"
           id="regularPrice"
@@ -71,7 +77,7 @@ function CreateCabinForm() {
         />
       </FormRow>
 
-      <FormRow label="discount" error={errors?.discount?.message}>
+      <FormRow label="Discount" error={errors?.discount?.message}>
         <Input
           type="number"
           id="discount"
@@ -85,31 +91,35 @@ function CreateCabinForm() {
         />
       </FormRow>
 
-      <FormRow label="description" error={errors?.description?.message}>
+      <FormRow label="Description" error={errors?.description?.message}>
         <Textarea
-          type="text"
+          type="number"
           id="description"
           {...register("description", {
             required: "This field is required",
           })}
-          defaultValue=""
+          defaultValue=" "
         />
       </FormRow>
 
-      <FormRow label="image">
+      <FormRow label="Cabin photo">
         <FileInput
           id="image"
           accept="image/*"
-          {...register("description", {
-            required: "This field is required",
+          {...register("image", {
+            required: isEditSession ? false : "This field is required",
           })}
         />
       </FormRow>
 
-      <Button variation="secondary" type="reset">
-        Cancel
-      </Button>
-      <Button disabled={isCreating}>Edit cabin</Button>
+      <FormRow>
+        <Button variation="secondary" type="reset">
+          Cancel
+        </Button>
+        <Button disabled={isCreating}>
+          {isEditSession ? "Edit cabin" : "Add cabin"}
+        </Button>
+      </FormRow>
     </Form>
   );
 }
