@@ -46,6 +46,7 @@ function UpdateSettingsForm() {
           defaultValue={maxBookingLength}
           disabled={isUpdating}
           onBlur={(e) => handleUpdate(e, "maxBookingLength")}
+
         />
       </FormRow>
 
