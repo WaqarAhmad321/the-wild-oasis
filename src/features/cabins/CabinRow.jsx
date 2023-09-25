@@ -3,7 +3,7 @@ import { formatCurrency } from "../../utils/helpers";
 import { useState } from "react";
 import CreateCabinForm from "./CreateCabinForm";
 import useDeleteCabin from "./useDeleteCabin";
-import { HiSquare2Stack, HiPencil, HiTrash } from "react-icons";
+import { HiSquare2Stack, HiPencil, HiTrash } from "react-icons/hi2";
 import useCreateCabin from "./useCreateCabin";
 
 const TableRow = styled.div`
