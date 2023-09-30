@@ -102,13 +102,12 @@ function Toggle({ id }) {
 }
 
 function List({ children, id }) {
-  const { openId, position, close } = useContext(MenusContext);
-  const ref = useOutsideClick(close);
+  const { openId, position } = useContext(MenusContext);
 
   if (openId !== id) return null;
 
   return createPortal(
-    <StyledList position={position} ref={ref}>{children}</StyledList>,
+    <StyledList position={position}>{children}</StyledList>,
     document.body
   );
 }
