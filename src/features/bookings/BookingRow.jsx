@@ -3,7 +3,6 @@ import { format, isToday } from "date-fns";
 
 import Tag from "../../ui/Tag";
 import Table from "../../ui/Table";
-
 import { formatCurrency } from "../../utils/helpers";
 import { formatDistanceFromNow } from "../../utils/helpers";
 
@@ -44,10 +43,11 @@ function BookingRow({
     numGuests,
     totalPrice,
     status,
-    guests: { fullName: guestName, email },
     cabins: { name: cabinName },
+    guests: { fullName: guestName, email },
   },
 }) {
+
   const statusToTagName = {
     unconfirmed: "blue",
     "checked-in": "green",
