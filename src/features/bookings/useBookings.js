@@ -42,7 +42,7 @@ function useBookings() {
       queryFn: ["bookings", filter, sortBy, page - 1],
       queryKey: () => getBookings({ filter, sortBy, page: page - 1 }),
     });
-    
+
   return { isLoading, bookings, count };
 }
 

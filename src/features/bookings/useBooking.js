@@ -15,7 +15,7 @@ function useBooking() {
     retry: false,
   });
 
-  return { isLoading, booking, error };
+  return { isLoading, booking, error, bookingId };
 }
 
 export default useBooking;
