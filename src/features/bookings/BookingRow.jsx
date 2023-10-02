@@ -47,7 +47,6 @@ function BookingRow({
     guests: { fullName: guestName, email },
   },
 }) {
-
   const statusToTagName = {
     unconfirmed: "blue",
     "checked-in": "green",
