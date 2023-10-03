@@ -27,10 +27,9 @@ function CheckinBooking() {
   const [confirmPaid, setConfirmPaid] = useState(false);
   const { booking = {}, isLoading } = useBooking();
   const { checkin, isCheckingIn } = useCheckin();
-  const { addBreakfast, setAddBreakfast } = useState();
+  const [addBreakfast, setAddBreakfast] = useState(false);
   const { settings = {}, isLoading: isLoadingSettings } = useSettings();
   const moveBack = useMoveBack();
-  console.log(settings);
   const {
     id: bookingId,
     guests,
@@ -47,7 +46,19 @@ function CheckinBooking() {
 
   function handleCheckin() {
     if (!confirmPaid) return;
-    checkin(bookingId);
+
+    if (addBreakfast) {
+      checkin({
+        bookingId,
+        breakfast: {
+          hasBreakfast: true,
+          extrasPrice: optionalBreakfastPrice,
+          totalPrice: totalPrice + optionalBreakfastPrice,
+        },
+      });
+    } else {
+      checkin({ bookingId, breakfast: {} });
+    }
   }
 
   if (isLoading || isLoadingSettings) return <Spinner />;
