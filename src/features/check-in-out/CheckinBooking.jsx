@@ -15,10 +15,8 @@ import { useEffect, useState } from "react";
 import useCheckin from "./useCheckin";
 import { formatCurrency } from "../../utils/helpers";
 import useSettings from "../settings/useSettings";
-import { HiOutlinePresentationChartLine } from "react-icons/hi2";
 
 const Box = styled.div`
-  /* Box */
   background-color: var(--color-grey-0);
   border: 1px solid var(--color-grey-100);
   border-radius: var(--border-radius-md);
@@ -30,9 +28,9 @@ function CheckinBooking() {
   const { booking = {}, isLoading } = useBooking();
   const { checkin, isCheckingIn } = useCheckin();
   const { addBreakfast, setAddBreakfast } = useState();
-  const { settings, isLoading: isLoadingSettings } = useSettings();
+  const { settings = {}, isLoading: isLoadingSettings } = useSettings();
   const moveBack = useMoveBack();
-
+  console.log(settings);
   const {
     id: bookingId,
     guests,
@@ -42,8 +40,8 @@ function CheckinBooking() {
     numNights,
   } = booking;
 
-  const optionalBreakfastPrice =
-    settings.breakfastPrice * numNights * numGuests;
+  const { breakfastPrice } = settings;
+  const optionalBreakfastPrice = breakfastPrice * numNights * numGuests;
 
   useEffect(() => setConfirmPaid(booking?.isPaid ?? false), [booking]);
 
@@ -98,7 +96,7 @@ function CheckinBooking() {
         <Button onClick={handleCheckin} disabled={!confirmPaid || isCheckingIn}>
           Check in booking #{bookingId}
         </Button>
-        <Button variation="secondary" onClick={moveBack}>
+        <Button $variation="secondary" onClick={moveBack}>
           Back
         </Button>
       </ButtonGroup>

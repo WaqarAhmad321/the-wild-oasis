@@ -106,7 +106,7 @@ function List({ children, id }) {
   if (openId !== id) return null;
 
   return createPortal(
-    <StyledList position={position}>{children}</StyledList>,
+    <StyledList $position={position}>{children}</StyledList>,
     document.body
   );
 }
