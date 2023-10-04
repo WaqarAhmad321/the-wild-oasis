@@ -74,7 +74,7 @@ function CabinRow({ cabin }) {
       ) : (
         <span>&mdash;</span>
       )}
-      
+
       <div>
         <Modal>
           <Menus.Menu>
