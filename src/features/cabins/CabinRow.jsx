@@ -65,7 +65,7 @@ function CabinRow({ cabin }) {
 
   return (
     <Table.Row columns="0.6fr 1.8fr 2.2fr 1fr 1fr 1fr">
-      <Img src={image} />
+      <Img src={image} loading="lazy" />
       <Cabin>{name}</Cabin>
       <div>Fits upto {maxCapacity} guests</div>
       <Price>{formatCurrency(regularPrice)}</Price>
