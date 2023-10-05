@@ -1,5 +1,17 @@
 import supabase from "./supabase";
 
+export async function signUp({ email, password, fullName }) {
+  const { error } = await supabase.auth.signUp({
+    email,
+    password,
+    options: {
+      data: { fullName, avatar: "" },
+    },
+  });
+
+  if (error) throw new Error(error.message);
+}
+
 export async function login({ email, password }) {
   const { data, error } = await supabase.auth.signInWithPassword({
     email,
@@ -9,6 +21,12 @@ export async function login({ email, password }) {
   if (error) throw new Error(error.message);
 
   return data;
+}
+
+export async function logout() {
+  const { error } = await supabase.auth.signOut();
+
+  if (error) throw new Error(error.message);
 }
 
 export async function getCurrentUser() {
@@ -21,4 +39,24 @@ export async function getCurrentUser() {
   if (error) throw new Error(error.message);
 
   return data?.user;
+}
+
+export async function updateCurrentUser({ password, fullName, avatar }) {
+  let updateData;
+  if (password) updateData = { password };
+  if (fullName) updateData = { data: { fullName } };
+
+  const { data, error } = supabase.auth.updateUser(updateData);
+
+  if (error) throw new Error(error.message);
+
+  if (!avatar) return data;
+
+  const fileName = `avatar-${data.user.id}-${Math.random()}`;
+
+  const { error: storageError } = supabase.storage
+    .from("avatar")
+    .upload(fileName, avatar);
+r
+  if (storageError) throw new Error(error.message);
 }

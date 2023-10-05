@@ -1,8 +1,46 @@
-# React + Vite
+# The Wild Oasis
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Wild Oasis is a Hotel Management System utilizing Supabase. In this system, hotel staff can log in, manage rooms by adding, editing, and deleting them, and handle booking check-ins and check-outs seamlessly. It has a lot of features, including strong authentication, efficient filtering, and dynamic sorting.
 
-Currently, two official plugins are available:
+## Run Locally
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Clone the project
+
+```bash
+  git clone https://github.com/WaqarAhmad321/the-wild-oasis.git
+```
+
+Go to the project directory
+
+```bash
+  cd the-wild-oasis
+```
+
+Install the dependencies
+
+```bash
+  npm install
+```
+
+Start the server
+
+```bash
+  npm run dev
+```
+
+## Deployment
+
+To deploy this project run
+
+```bash
+  npm run build
+```
+
+## Tech Stack
+
+**Client:** React, CSS, style-components
+**Server:** Vite, Supabase
+
+## Author
+
+- [@WaqarAhmad321](https://github.com/WaqarAhmad321)
