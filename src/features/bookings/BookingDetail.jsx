@@ -73,14 +73,16 @@ function BookingDetail() {
           </Button>
         )}
         <Modal>
-          <Modal.Open opens="deleteBooking">
-            <Button
-              $variation="danger"
-              icon={<HiTrash />}
-              disabled={isDeleting}>
-              Delete Booking
-            </Button>
-          </Modal.Open>
+          {(status === "checked-out" || status === "unconfirmed") && (
+            <Modal.Open opens="deleteBooking">
+              <Button
+                $variation="danger"
+                icon={<HiTrash />}
+                disabled={isDeleting}>
+                Delete Booking
+              </Button>
+            </Modal.Open>
+          )}
 
           <Modal.Window name="deleteBooking">
             <ConfirmDelete

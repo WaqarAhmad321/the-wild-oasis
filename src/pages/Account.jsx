@@ -9,7 +9,7 @@ function Account() {
 
       <Row>
         <Heading as="h3">Update user data</Heading>
-        <UpdateUserDataForm/>
+        <UpdateUserDataForm />
       </Row>
 
       <Row>

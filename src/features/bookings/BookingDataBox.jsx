@@ -121,7 +121,7 @@ function BookingDataBox({ booking }) {
       email,
       countryFlag,
       nationality: country,
-      nationalId,
+      nationalID,
     },
   } = booking;
 
@@ -153,7 +153,7 @@ function BookingDataBox({ booking }) {
           <span>&bull;</span>
           <p>{email}</p>
           <span>&bull;</span>
-          <p>National ID {nationalId}</p>
+          <p>National ID {nationalID}</p>
         </Guest>
 
         {observations && (

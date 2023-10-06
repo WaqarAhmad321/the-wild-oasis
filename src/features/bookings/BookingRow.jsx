@@ -57,6 +57,8 @@ function BookingRow({ booking = {} }) {
     cabins: { name: cabinName },
     guests: { fullName: guestName, email },
   } = booking;
+
+  console.log(email);
   const navigate = useNavigate();
   const statusToTagName = {
     unconfirmed: "blue",
@@ -121,11 +123,13 @@ function BookingRow({ booking = {} }) {
               </Menus.Button>
             )}
 
-            <Modal.Open opens="deleteBooking">
-              <Menus.Button icon={<HiTrash />} disabled={isDeleting}>
-                Delete Booking
-              </Menus.Button>
-            </Modal.Open>
+            {(status === "checked-out" || status === "unconfirmed") && (
+              <Modal.Open opens="deleteBooking">
+                <Menus.Button icon={<HiTrash />} disabled={isDeleting}>
+                  Delete Booking
+                </Menus.Button>
+              </Modal.Open>
+            )}
           </Menus.List>
         </Menus.Menu>
         <Modal.Window name="deleteBooking">
