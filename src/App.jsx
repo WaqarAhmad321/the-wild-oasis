@@ -4,19 +4,19 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-import Users from "./pages/Users";
 import Login from "./pages/Login";
+import Users from "./pages/Users";
 import Cabins from "./pages/Cabins";
-import Account from "./pages/Account";
 import Booking from "./pages/Booking";
+import Account from "./pages/Account";
 import AppLayout from "./ui/AppLayout";
 import Bookings from "./pages/Bookings";
 import Settings from "./pages/Settings";
 import Dashboard from "./pages/Dashboard";
 import PageNotFound from "./pages/PageNotFound";
 import GlobalStyles from "./styles/GlobalStyles";
-import Checkin from "./features/check-in-out/Checkin";
 import ProtectedRoute from "./ui/ProtectedRoute";
+import Checkin from "./features/check-in-out/Checkin";
 
 const queryClient = new QueryClient({
   defaultOptions: {
