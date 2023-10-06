@@ -58,7 +58,7 @@ function BookingRow({
     status,
     cabins: { name: cabinName },
     guests: { fullName: guestName, email },
-  },
+  } = {},
 }) {
   const navigate = useNavigate();
   const statusToTagName = {
