@@ -46,20 +46,17 @@ const Amount = styled.div`
   font-weight: 500;
 `;
 
-function BookingRow({
-  booking: {
+function BookingRow({ booking = {} }) {
+  const {
     id: bookingId,
-    created_at,
     startDate,
     endDate,
     numNights,
-    numGuests,
     totalPrice,
     status,
     cabins: { name: cabinName },
     guests: { fullName: guestName, email },
-  } = {},
-}) {
+  } = booking;
   const navigate = useNavigate();
   const statusToTagName = {
     unconfirmed: "blue",

@@ -67,7 +67,8 @@ function BookingDetail() {
             onClick={() => {
               checkout(bookingId);
               navigate("/bookings");
-            }}>
+            }}
+            disabled={isCheckingout}>
             Check out
           </Button>
         )}
