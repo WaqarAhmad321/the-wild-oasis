@@ -7,6 +7,7 @@ import FormRow from "../../ui/FormRow";
 import Input from "../../ui/Input";
 
 import useUser from "./useUser";
+import useUpdateUser from "./useUpdateUser";
 
 function UpdateUserDataForm() {
   const {
@@ -18,9 +19,27 @@ function UpdateUserDataForm() {
 
   const [fullName, setFullName] = useState(currentFullName);
   const [avatar, setAvatar] = useState(null);
+  const { updateUser, isUpdatingUser } = useUpdateUser();
 
   function handleSubmit(e) {
     e.preventDefault();
+
+    if (!fullName) return;
+
+    updateUser(
+      { fullName, avatar },
+      {
+        onSuccess: () => {
+          setAvatar(null);
+          e.target.reset();
+        },
+      }
+    );
+  }
+
+  function handleReset() {
+    setFullName(currentFullName);
+    setAvatar(null);
   }
 
   return (
@@ -34,6 +53,7 @@ function UpdateUserDataForm() {
           value={fullName}
           onChange={(e) => setFullName(e.target.value)}
           id="fullName"
+          disabled={isUpdatingUser}
         />
       </FormRow>
       <FormRow label="Avatar image">
@@ -41,13 +61,18 @@ function UpdateUserDataForm() {
           id="avatar"
           accept="image/*"
           onChange={(e) => setAvatar(e.target.files[0])}
+          disabled={isUpdatingUser}
         />
       </FormRow>
       <FormRow>
-        <Button type="reset" $variation="secondary">
+        <Button
+          type="reset"
+          $variation="secondary"
+          disabled={isUpdatingUser}
+          onClick={handleReset}>
           Cancel
         </Button>
-        <Button>Update account</Button>
+        <Button disabled={isUpdatingUser}>Update account</Button>
       </FormRow>
     </Form>
   );
