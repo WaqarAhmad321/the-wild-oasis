@@ -26,11 +26,15 @@ export async function getBookings({ filter, sortBy, page }) {
     query = query.range(from, to);
   }
 
-  const { data, error, count } = await query;
+  if (query) {
+    const from = query + 1;
 
-  if (error) throw new Error("Bookings could not be loaded.");
+    const { data, error, count } = await query;
 
-  return { data, count };
+    if (error) throw new Error("Bookings could not be loaded.");
+
+    return { data, count };
+  }
 }
 
 export async function getBooking(id) {
