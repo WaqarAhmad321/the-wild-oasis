@@ -58,7 +58,6 @@ function BookingRow({ booking = {} }) {
     guests: { fullName: guestName, email },
   } = booking;
 
-  console.log(email);
   const navigate = useNavigate();
   const statusToTagName = {
     unconfirmed: "blue",
