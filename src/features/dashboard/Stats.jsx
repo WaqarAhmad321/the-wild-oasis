@@ -1,3 +1,4 @@
+import { formatCurrency } from "../../utils/helpers";
 import Stat from "./Stat";
 import {
   HiOutlineBanknotes,
@@ -6,15 +7,15 @@ import {
   HiOutlineChartBar,
 } from "react-icons/hi2";
 
-function Stats({ bookings, stays, confirmedStays, numDays, cabinCount }) {
-  const numBookings = bookings?.length;
+function Stats({ bookings, confirmedStays, numDays, cabinCount }) {
+  const numBookings = bookings.length;
 
-  const sales = bookings?.reduce((acc, cur) => acc + cur.totalPrice, 0);
+  const sales = bookings.reduce((acc, cur) => acc + cur.totalPrice, 0);
 
   const checkins = confirmedStays.length;
 
   const occupancy =
-    confirmedStays?.reduce((acc, cur) => acc + cur.numNights, 0) /
+    confirmedStays.reduce((acc, cur) => acc + cur.numNights, 0) /
     (numDays * cabinCount);
 
   return (
@@ -29,7 +30,7 @@ function Stats({ bookings, stays, confirmedStays, numDays, cabinCount }) {
         title="Sales"
         icon={<HiOutlineBanknotes />}
         color="green"
-        value={sales}
+        value={formatCurrency(sales)}
       />
       <Stat
         title="Check ins"

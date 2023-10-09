@@ -6,7 +6,7 @@ function useBooking() {
   const { bookingId } = useParams();
 
   const {
-    isLoading,
+    isLoadingBooking,
     data: booking,
     error,
   } = useQuery({
@@ -15,7 +15,7 @@ function useBooking() {
     retry: false,
   });
 
-  return { isLoading, booking, error, bookingId };
+  return { isLoadingBooking, booking, error, bookingId };
 }
 
 export default useBooking;
