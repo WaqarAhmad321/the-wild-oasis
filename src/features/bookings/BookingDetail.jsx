@@ -25,7 +25,7 @@ const HeadingGroup = styled.div`
 `;
 
 function BookingDetail() {
-  const { booking = {}, isLoading, bookingId } = useBooking();
+  const { booking = {}, isLoadingBooking, bookingId } = useBooking();
   const { checkout, isCheckingout } = useCheckout();
   const { deleteBooking, isDeleting } = useDeleteBooking();
   const navigate = useNavigate();
@@ -40,7 +40,7 @@ function BookingDetail() {
 
   const { status } = booking;
 
-  if (isLoading) return <Spinner />;
+  if (isLoadingBooking) return <Spinner />;
 
   return (
     <>
