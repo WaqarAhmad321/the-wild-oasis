@@ -6,34 +6,42 @@ import {
   HiOutlineChartBar,
 } from "react-icons/hi2";
 
-function Stats({ bookings, stays, confirmedStays }) {
+function Stats({ bookings, stays, confirmedStays, numDays, cabinCount }) {
   const numBookings = bookings?.length;
+
+  const sales = bookings?.reduce((acc, cur) => acc + cur.totalPrice, 0);
+
+  const checkins = confirmedStays.length;
+
+  const occupancy =
+    confirmedStays?.reduce((acc, cur) => acc + cur.numNights, 0) /
+    (numDays * cabinCount);
 
   return (
     <>
       <Stat
         title="Bookings"
-        icon={HiOutlineBriefcase}
+        icon={<HiOutlineBriefcase />}
         color="blue"
         value={numBookings}
       />
       <Stat
         title="Sales"
-        icon={HiOutlineBanknotes}
+        icon={<HiOutlineBanknotes />}
         color="green"
-        value={numBookings}
+        value={sales}
       />
       <Stat
         title="Check ins"
-        icon={HiOutlineCalendarDays}
+        icon={<HiOutlineCalendarDays />}
         color="indigo"
-        value={numBookings}
+        value={checkins}
       />
       <Stat
         title="Occupancy rate"
-        icon={HiOutlineChartBar}
+        icon={<HiOutlineChartBar />}
         color="yellow"
-        value={numBookings}
+        value={Math.round(occupancy * 100) + "%"}
       />
     </>
   );
