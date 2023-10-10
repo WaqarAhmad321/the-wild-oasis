@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 import Header from "./Header";
 import SideBar from "./SideBar";
 import styled from "styled-components";
+import Uploader from "../data/Uploader";
 
 const StyledAppLayout = styled.div`
   display: grid;
@@ -13,7 +14,7 @@ const StyledAppLayout = styled.div`
 const Main = styled.main`
   background-color: var(--color-grey-50);
   padding: 4rem 4.8rem 6.4rem;
-  overflow: auto ;
+  overflow: auto;
 `;
 
 const Container = styled.div`
