@@ -17,6 +17,7 @@ import Modal from "../../ui/Modal";
 import ConfirmDelete from "../../ui/ConfirmDelete";
 import { HiTrash } from "react-icons/hi2";
 import useDeleteBooking from "./useDeleteBooking";
+import Empty from "../../ui/Empty";
 
 const HeadingGroup = styled.div`
   display: flex;
@@ -25,12 +26,15 @@ const HeadingGroup = styled.div`
 `;
 
 function BookingDetail() {
-  const { booking = {}, isLoadingBooking, bookingId } = useBooking();
+  const { booking , isLoadingBooking } = useBooking();
   const { checkout, isCheckingout } = useCheckout();
   const { deleteBooking, isDeleting } = useDeleteBooking();
   const navigate = useNavigate();
 
   const moveBack = useMoveBack();
+
+  if (isLoadingBooking) return <Spinner />;
+  if (!booking) return <Empty resource="booking" />;
 
   const statusToTagName = {
     unconfirmed: "blue",
@@ -38,16 +42,14 @@ function BookingDetail() {
     "checked-out": "silver",
   };
 
-  const { status } = booking;
-
-  if (isLoadingBooking) return <Spinner />;
+  const { status, bookingId } = booking;
 
   return (
     <>
       <Row type="horizontal">
         <HeadingGroup>
           <Heading as="h1">Booking #{bookingId}</Heading>
-          <Tag type={statusToTagName[status]}>{status.replace("-", " ")}</Tag>
+          <Tag type={statusToTagName[status]}>{status?.replace("-", " ")}</Tag>
         </HeadingGroup>
         <ButtonText onClick={moveBack}>&larr; Back</ButtonText>
       </Row>
