@@ -40,7 +40,7 @@ const Discount = styled.div`
 
 function CabinRow({ cabin }) {
   const { deleteCabin, isDeleting } = useDeleteCabin();
-  const { createCabin } = useCreateCabin();
+  const { createCabin, isCreating } = useCreateCabin();
 
   const {
     id: cabinId,
@@ -65,7 +65,7 @@ function CabinRow({ cabin }) {
 
   return (
     <Table.Row columns="0.6fr 1.8fr 2.2fr 1fr 1fr 1fr">
-      <Img src={image} loading="lazy" />
+      <Img src={image} />
       <Cabin>{name}</Cabin>
       <div>Fits upto {maxCapacity} guests</div>
       <Price>{formatCurrency(regularPrice)}</Price>
@@ -81,7 +81,10 @@ function CabinRow({ cabin }) {
             <Menus.Toggle id={cabinId} />
 
             <Menus.List id={cabinId}>
-              <Menus.Button icon={<HiSquare2Stack />} onClick={handleDuplicate}>
+              <Menus.Button
+                icon={<HiSquare2Stack />}
+                onClick={handleDuplicate}
+                disabled={isCreating}>
                 Duplicate
               </Menus.Button>
 
