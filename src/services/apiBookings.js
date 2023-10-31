@@ -2,6 +2,13 @@ import supabase from "./supabase";
 import { getToday } from "../utils/helpers";
 import { PAGE_SIZE } from "../utils/constants";
 
+export async function createBooking() {
+  const { data, error } = await supabase
+    .from("bookings")
+    .insert([{ some_column: "someValue", other_column: "otherValue" }])
+    .select();
+}
+
 export async function getBookings({ filter, sortBy, page }) {
   let query = supabase
     .from("bookings")

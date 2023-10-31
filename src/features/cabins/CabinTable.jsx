@@ -7,8 +7,7 @@ import Empty from "../../ui/Empty";
 import useCabins from "./useCabins";
 import Spinner from "../../ui/Spinner";
 
-function CabinTable() {
-  const { isLoadingCabins, cabins } = useCabins();
+function CabinTable({ cabins, isLoadingCabins }) {
   const [searchParams] = useSearchParams();
 
   const filterValue = searchParams.get("discount") || "all";
