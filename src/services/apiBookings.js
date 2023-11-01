@@ -3,10 +3,12 @@ import { getToday } from "../utils/helpers";
 import { PAGE_SIZE } from "../utils/constants";
 
 export async function createBooking() {
-  const { data, error } = await supabase
+  const { error } = await supabase
     .from("bookings")
     .insert([{ some_column: "someValue", other_column: "otherValue" }])
     .select();
+
+  if (error) throw new Error("Booking could not be created.");
 }
 
 export async function getBookings({ filter, sortBy, page }) {
