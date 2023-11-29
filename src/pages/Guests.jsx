@@ -9,7 +9,7 @@ import SearchBar from "../ui/SearchBar";
 function Guests() {
   const { guests, isLoadingGuests } = useGuests();
   const [search, setSearch] = useState("");
-
+  
   return (
     <>
       <Row type="horizontal">

@@ -2,15 +2,6 @@ import supabase from "./supabase";
 import { getToday } from "../utils/helpers";
 import { PAGE_SIZE } from "../utils/constants";
 
-export async function createBooking() {
-  const { error } = await supabase
-    .from("bookings")
-    .insert([{ some_column: "someValue", other_column: "otherValue" }])
-    .select();
-
-  if (error) throw new Error("Booking could not be created.");
-}
-
 export async function getBookings({ filter, sortBy, page }) {
   let query = supabase
     .from("bookings")
@@ -114,7 +105,6 @@ export async function updateBooking(id, obj) {
 }
 
 export async function deleteBooking(id) {
-  // REMEMBER RLS POLICIES
   const { data, error } = await supabase.from("bookings").delete().eq("id", id);
 
   if (error) throw new Error("Booking could not be deleted");

@@ -8,7 +8,7 @@ function AddGuest({ isLoadingGuests }) {
       <div>
         <Modal>
           <Modal.Open opens="guests-form">
-            <Button>Add new Guest</Button>
+            <Button>Add a guest</Button>
           </Modal.Open>
 
           <Modal.Window name="guests-form">
