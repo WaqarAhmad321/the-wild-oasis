@@ -2,6 +2,7 @@
 
 Wild Oasis is a Hotel Management System utilizing Supabase. In this system, hotel staff can log in, manage rooms by adding, editing, and deleting them, and handle booking check-ins and check-outs seamlessly. It has a lot of features, including strong authentication, efficient filtering, and dynamic sorting.
 
+
 ## Run Locally
 
 Clone the project

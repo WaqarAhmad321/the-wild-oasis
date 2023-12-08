@@ -30,7 +30,6 @@ function AppLayout() {
       <Header />
       <SideBar />
 
-
       <Main>
         <Container>
           <Outlet />
